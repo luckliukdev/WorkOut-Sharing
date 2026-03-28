@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Timer - Import</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+    <script>
+        function tryRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const data = urlParams.get('data');
+            if (data) {
+                const intentUrl = "workouttimer://import?data=" + data;
+                window.location.href = intentUrl;
+                // Mostra il pulsante se il redirect non avviene entro 2 secondi
+                setTimeout(() => {
+                    document.getElementById('manual-btn').style.display = 'inline-block';
+                    document.getElementById('manual-btn').href = intentUrl;
+                }, 2000);
+            }
+        }
+        window.onload = tryRedirect;
+    </script>
+</head>
+<body>
+    <h3>Importazione Allenamento</h3>
+    <p>Stiamo aprendo Workout Timer...</p>
+    <a id="manual-btn" class="btn">APRI MANUALMENTE</a>
+</body>
+</html>
